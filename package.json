@@ -37,5 +37,8 @@
     ]
   },
   "template": "typescript",
-  "useNpm": true
+  "useNpm": true,
+  "devDependencies": {
+    "@types/react": "^19.0.10"
+  }
 }
