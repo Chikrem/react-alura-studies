@@ -1,5 +1,6 @@
 import React from "react";
-import Botao from "./../Botao/index";
+import Botao from "../Botao";
+
 
 class Formulario extends React.Component {
   render() {
