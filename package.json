@@ -35,5 +35,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "template": "typescript",
+  "useNpm": true,
+  "devDependencies": {
+    "@types/react": "^19.0.10"
   }
 }
