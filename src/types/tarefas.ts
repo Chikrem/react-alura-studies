@@ -1,0 +1,1 @@
+export interface Tarefas { tarefa: string; tempo: string; }
