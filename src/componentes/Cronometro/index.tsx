@@ -2,28 +2,31 @@ import Botao from "../Botao";
 import Relogio from "./Relogio";
 import style from "./Cronometro.module.scss";
 import { Tarefas } from "../../types/tarefas";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { tempoParaSegundos } from "../../common/utils/time";
 
 interface Props {
-  selecionado: Tarefas | undefined
+  selecionado: Tarefas | undefined;
 }
 
 export default function Cronometro({ selecionado }: Props) {
   const [tempo, setTempo] = useState<number>();
-  if(selecionado?.tempo) {
-    setTempo(tempoParaSegundos(selecionado?.tempo));
-  }
+
+  useEffect(() => {
+    if (selecionado?.tempo) {
+      setTempo(tempoParaSegundos(selecionado.tempo));
+    }
+  }, [selecionado]);
+
   return (
     <div className={style.cronometro}>
       <p className={style.titulo}>Escolha um card e inicie o Cronômetro</p>
-      Tempo: {tempo}
       <div className={style.relogioWrapper}>
-        <Relogio />
+        <Relogio tempo = {tempo}/>
       </div>
       <Botao>
         Começar!
       </Botao>
     </div>
-  )
+  );
 }

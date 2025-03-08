@@ -10,21 +10,21 @@ function App() {
   const [tarefas, setTarefas] = useState<Tarefas[]>([
     {
       tarefa: "React",
-      tempo: "02:00:00",
+      tempo: "01:30:00",
       selecionado: false,
       completado: false,
       id: uuidv4(),
     },
     {
       tarefa: "Javascript",
-      tempo: "01:00:00",
+      tempo: "01:30:00",
       selecionado: false,
       completado: false,
       id: uuidv4(),
     },
     {
       tarefa: "React",
-      tempo: "02:00:00",
+      tempo: "01:00:00",
       selecionado: false,
       completado: false,
       id: uuidv4(),
