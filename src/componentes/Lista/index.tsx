@@ -1,26 +1,28 @@
-import React from "react";
-import { Tarefas } from "../../types/tarefas";
-import style from './Lista.module.scss'
+import Item from './Item';
+import style from './Lista.module.scss';
+import { Tarefas } from '../../types/tarefas';
 
-
-interface ListaProps {
-  tarefas: Tarefas[];
-  selecionarTarefa: (id: string) => void;
+interface Props {
+  tarefas: Tarefas[],
+  selecionarTarefa: (tarefaSelecionada: Tarefas) => void 
 }
 
-const Lista: React.FC<ListaProps> = ({ tarefas, selecionarTarefa }) => {
+
+function Lista({ tarefas, selecionarTarefa }: Props) {
   return (
     <aside className={style.listaTarefas}>
-      <h2>Estudos do dia</h2>
+      <h2> Estudos do dia </h2>
       <ul>
-        {tarefas.map((tarefa) => (
-          <li key={tarefa.id} onClick={() => selecionarTarefa(tarefa.id)} className={style.item}>
-            {tarefa.tarefa} - {tarefa.tempo}
-          </li>
+        {tarefas.map(item => (
+          <Item
+            selecionaTarefa={selecionarTarefa}
+            key={item.id}
+            {...item}
+          />
         ))}
       </ul>
     </aside>
-  );
-};
+  )
+}
 
 export default Lista;

@@ -38,22 +38,21 @@ function App() {
     },
   ]);
 
-  const [selecionado, setSelecionado] = useState<Tarefas | null>(null);
+  const [selecionado, setSelecionado] = useState<Tarefas>();
 
-  function selecionarTarefa(id: string) {
-    setTarefas(tarefas.map(tarefa => ({
-      ...tarefa,
-      selecionado: tarefa.id === id ? true : false
-    })));
-    const tarefaSelecionada = tarefas.find(tarefa => tarefa.id === id) || null;
+  function selecionaTarefa(tarefaSelecionada: Tarefas) {
     setSelecionado(tarefaSelecionada);
+    setTarefas(tarefasAnteriores => tarefasAnteriores.map(tarefa => ({
+      ...tarefa,
+      selecionado: tarefa.id === tarefaSelecionada.id ? true : false
+    })))
   }
 
   return (
     <div className={style.AppStyle}>
       <h1>React App</h1>
       <Formulario tarefas={tarefas} setTarefas={setTarefas} />
-      <Lista tarefas={tarefas} selecionarTarefa={selecionarTarefa} />
+      <Lista tarefas={tarefas} selecionarTarefa={selecionaTarefa} />
       <Cronometro selecionado={selecionado} />
     </div>
   );
