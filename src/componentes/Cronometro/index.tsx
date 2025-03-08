@@ -3,7 +3,7 @@ import Relogio from "./Relogio";
 import style from "./Cronometro.module.scss";
 import { Tarefas } from "../../types/tarefas";
 import { useState } from "react";
-import { tempoParaSegundos } from "../../common/utils/date";
+import { tempoParaSegundos } from "../../common/utils/time";
 
 interface Props {
   selecionado: Tarefas | undefined
