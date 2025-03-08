@@ -50,9 +50,10 @@ function App() {
 
   function setCompletado() {
     if (selecionado) {
+      setSelecionado(undefined);
       setTarefas(tarefasAnteriores => tarefasAnteriores.map(tarefa => {
         if (tarefa.id === selecionado.id) {
-          return { ...tarefa, completado: true };
+          return { ...tarefa, selecionado: false , completado: true };
         }
         return tarefa;
       }));
