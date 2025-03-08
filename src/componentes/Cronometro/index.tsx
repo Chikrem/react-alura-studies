@@ -7,9 +7,10 @@ import { tempoParaSegundos } from "../../common/utils/time";
 
 interface Props {
   selecionado: Tarefas | undefined;
+  setCompletado: () => void;
 }
 
-export default function Cronometro({ selecionado }: Props) {
+export default function Cronometro({ selecionado, setCompletado }: Props) {
   const [tempo, setTempo] = useState<number>();
 
   useEffect(() => {
@@ -18,13 +19,29 @@ export default function Cronometro({ selecionado }: Props) {
     }
   }, [selecionado]);
 
+  function iniciarContagemRegressiva() {
+    if (tempo && tempo > 0) {
+      const timer = setInterval(() => {
+        setTempo((tempoAnterior) => {
+          if (tempoAnterior && tempoAnterior > 0) {
+            return tempoAnterior - 1;
+          } else {
+            clearInterval(timer);
+            setCompletado();
+            return 0;
+          }
+        });
+      }, 1000);
+    }
+  }
+
   return (
     <div className={style.cronometro}>
       <p className={style.titulo}>Escolha um card e inicie o Cronômetro</p>
       <div className={style.relogioWrapper}>
-        <Relogio tempo = {tempo}/>
+        <Relogio tempo={tempo} />
       </div>
-      <Botao>
+      <Botao onClick={iniciarContagemRegressiva}>
         Começar!
       </Botao>
     </div>

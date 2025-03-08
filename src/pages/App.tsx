@@ -24,14 +24,14 @@ function App() {
     },
     {
       tarefa: "React",
-      tempo: "01:00:00",
+      tempo: "01:00:10",
       selecionado: false,
       completado: false,
       id: uuidv4(),
     },
     {
       tarefa: "Javascript",
-      tempo: "01:00:00",
+      tempo: "00:00:10",
       selecionado: false,
       completado: false,
       id: uuidv4(),
@@ -45,7 +45,18 @@ function App() {
     setTarefas(tarefasAnteriores => tarefasAnteriores.map(tarefa => ({
       ...tarefa,
       selecionado: tarefa.id === tarefaSelecionada.id ? true : false
-    })))
+    })));
+  }
+
+  function setCompletado() {
+    if (selecionado) {
+      setTarefas(tarefasAnteriores => tarefasAnteriores.map(tarefa => {
+        if (tarefa.id === selecionado.id) {
+          return { ...tarefa, completado: true };
+        }
+        return tarefa;
+      }));
+    }
   }
 
   return (
@@ -53,7 +64,7 @@ function App() {
       <h1>React App</h1>
       <Formulario tarefas={tarefas} setTarefas={setTarefas} />
       <Lista tarefas={tarefas} selecionarTarefa={selecionaTarefa} />
-      <Cronometro selecionado={selecionado} />
+      <Cronometro selecionado={selecionado} setCompletado={setCompletado} />
     </div>
   );
 }
